@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dr. João – Clínica Médica & Tecnologia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Médico clínico de urgência e emergência em Belo Horizonte, com foco em atendimento responsável, comunicação clara e uso de tecnologia para melhorar o cuidado ao paciente."
+  />
+
+  <!-- Fonte moderna (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #070b1f;
+      --card: #0f172a;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.9);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout geral */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(2, 6, 23, 0.86);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 0 0, #22c55e, #22c55e 40%, #0ea5e9);
+      position: relative;
+      box-shadow: 0 12px 26px rgba(34, 197, 94, 0.6);
+    }
+
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 28%;
+      border-radius: 12px;
+      border: 2px solid rgba(15, 23, 42, 0.65);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+      color: var(--muted);
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.12rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #22c55e, #22d3ee);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(34, 197, 94, 0.7);
+      background: linear-gradient(
+        to right,
+        rgba(34, 197, 94, 0.2),
+        rgba(8, 47, 73, 0.5)
+      );
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .nav-cta span {
+      font-size: 1rem;
+      transform: translateY(1px);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(34, 197, 94, 0.4);
+      background: linear-gradient(
+        to right,
+        rgba(34, 197, 94, 0.35),
+        rgba(8, 47, 73, 0.7)
+      );
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.22);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #22c55e, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 36rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .pill {
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.7rem 1.2rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #22c55e, #0ea5e9);
+      color: #0b1120;
+      box-shadow: 0 20px 38px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 45px rgba(34, 197, 94, 0.6);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: var(--text);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .btn-primary span,
+    .btn-ghost span {
+      font-size: 1.05rem;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at 0 0, #22c55e20, transparent 55%),
+        radial-gradient(circle at 100% 0, #0ea5e920, transparent 55%),
+        var(--card);
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid rgba(30, 64, 175, 0.75);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .hero-card-badge {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-card-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .stat {
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .stat-hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .mini-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-avatar {
+      justify-self: center;
+      position: relative;
+    }
+
+    .avatar-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px solid rgba(148, 163, 184, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 0, #22c55e40, #020617 65%);
+      position: relative;
+    }
+
+    .avatar-initials {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .avatar-tag {
+      position: absolute;
+      bottom: -6px;
+      right: -4px;
+      font-size: 0.62rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(22, 163, 74, 0.95);
+      color: #e5f9ed;
+      box-shadow: 0 10px 22px rgba(22, 163, 74, 0.7);
+    }
+
+    .hero-label {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Seções genéricas */
+    section {
+      padding: 3.2rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    /* Sobre */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      margin-bottom: 0.9rem;
+      color: var(--muted);
+    }
+
+    .about-text p strong {
+      color: var(--text);
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .highlight-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 0.7rem 0.8rem;
+      font-size: 0.75rem;
+    }
+
+    .highlight-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .highlight-value {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .about-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 1rem 1.1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .about-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .badge-small {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Atuação */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .service-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 1rem;
+      font-size: 0.83rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, #22c55e14, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .service-meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .bullet {
+      margin-top: 0.33rem;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #22c55e;
+      flex-shrink: 0;
+    }
+
+    .service-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Contato */
+    .contact {
+      padding-bottom: 3.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      padding: 1.2rem 1.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .contact-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .contact-value a {
+      color: #e5e7eb;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+    }
+
+    .field label {
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 0.55rem 0.7rem;
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #6b7280;
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4);
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .form-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .contact-form .btn-primary {
+      justify-content: center;
+      margin-top: 0.3rem;
+    }
+
+    /* Rodapé */
+    .footer {
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      padding: 1rem 0 1.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .cards-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card-body {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding: 0.7rem 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        inset: 100% 0 auto 0;
+        background: rgba(2, 6, 23, 0.98);
+        padding: 0.7rem 1.5rem 0.9rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.95);
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--transition-fast),
+          opacity var(--transition-fast);
+      }
+
+      .nav-links.open {
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 2.2rem;
+      }
+
+      .hero-card {
+        margin-top: 0.5rem;
+      }
+
+      .about-highlights {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="brand">
+          <div class="brand-logo"></div>
+          <div class="brand-text">
+            <div class="brand-title">Dr. João</div>
+            <div class="brand-sub">Clínica Médica · Urgência & Emergência</div>
+          </div>
+        </div>
+
+        <nav class="nav-links" id="nav-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#atuacao">Atuação</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">
+          Agendar contato <span>✉️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              Plantonista em Clínica Médica · Urgência & Emergência
+            </div>
+            <h1 class="hero-title">
+              Cuidado clínico responsável,<br />
+              com apoio real de <span>tecnologia & organização</span>.
+            </h1>
+            <p class="hero-subtitle">
+              Atuação em ambiente hospitalar de alta complexidade, com foco em tomada de decisão segura,
+              comunicação direta e uso inteligente de ferramentas digitais para otimizar o cuidado ao paciente
+              e a rotina da equipe.
+            </p>
+
+            <div class="hero-tags">
+              <div class="pill">
+                <span class="pill-dot"></span> Urgência & Emergência
+              </div>
+              <div class="pill">Clínica Médica</div>
+              <div class="pill">Fluxos baseados em evidência</div>
+              <div class="pill">Tecnologia aplicada à prática</div>
+            </div>
+
+            <div class="hero-actions">
+              <button
+                class="btn-primary"
+                onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})"
+              >
+                Falar com o Dr. João <span>➡️</span>
+              </button>
+              <button
+                class="btn-ghost"
+                onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})"
+              >
+                Conhecer trajetória <span>ℹ️</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Resumo profissional">
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-card-title">Visão geral</div>
+                <div class="stat-hint">Clínica Médica em Urgência & Emergência</div>
+              </div>
+              <div class="hero-card-badge">Perfil profissional</div>
+            </div>
+
+            <div class="hero-card-body">
+              <div>
+                <div class="stat">
+                  <div class="stat-label">Contexto de atuação</div>
+                  <div class="stat-value">Hospital Biocor</div>
+                  <div class="stat-hint">Atendimento em pronto-atendimento e internação clínica.</div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-label">Forma de atuação</div>
+                  <div class="stat-value">Plantonista & projetos em tecnologia</div>
+                  <div class="stat-hint">Combinação de assistência, organização e interesse em IA aplicada.</div>
+                </div>
+
+                <ul class="mini-list">
+                  <li>• Foco em protocolos claros e comunicação objetiva.</li>
+                  <li>• Interesse em soluções digitais para reduzir tarefas repetitivas.</li>
+                  <li>• Olhar humano, técnico e estruturado para cada caso.</li>
+                </ul>
+              </div>
+
+              <div class="hero-avatar">
+                <div class="avatar-circle">
+                  <span class="avatar-initials">J</span>
+                  <span class="avatar-tag">clínica | tech</span>
+                </div>
+                <div class="hero-label">Médico plantonista · Belo Horizonte/MG</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+      <section id="sobre">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Sobre o João</div>
+            <h2 class="section-title">Clínica, urgência e um pé em tecnologia.</h2>
+            <p class="section-desc">
+              Atuação em Clínica Médica no contexto de urgência e emergência, com interesse especial em
+              organização de fluxos, produtividade pessoal e uso de inteligência artificial na prática médica.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                Sou médico plantonista em <strong>Clínica Médica</strong> no contexto de
+                <strong>Urgência e Emergência</strong>, com experiência em atendimento de pacientes complexos
+                em ambiente hospitalar.
+              </p>
+              <p>
+                Tenho forte interesse em <strong>tecnologia, informática e inteligência artificial</strong>,
+                buscando aplicar essas ferramentas para organizar melhor a rotina, reduzir retrabalho e dar
+                mais foco ao que realmente importa: o cuidado ao paciente.
+              </p>
+              <p>
+                Antes da pandemia, minha rotina era extremamente estruturada e disciplinada. Depois desse
+                período, precisei me reorganizar — hoje estou em um processo ativo de
+                <strong>reestruturar hábitos, produtividade e projetos</strong>, tanto na vida pessoal quanto
+                profissional.
+              </p>
+              <p>
+                Fora do hospital, o tênis sempre foi uma parte importante da minha história. Esse esporte
+                moldou minha visão de disciplina, resiliência e foco em evolução contínua — conceitos que levo
+                para o plantão e para os projetos em tecnologia.
+              </p>
+
+              <div class="about-highlights">
+                <div class="highlight-card">
+                  <div class="highlight-label">Área principal</div>
+                  <div class="highlight-value">Clínica Médica</div>
+                </div>
+                <div class="highlight-card">
+                  <div class="highlight-label">Ambiente</div>
+                  <div class="highlight-value">Urgência & Emergência</div>
+                </div>
+                <div class="highlight-card">
+                  <div class="highlight-label">Interesse extra</div>
+                  <div class="highlight-value">IA aplicada à prática</div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="about-card">
+              <span class="badge-small">⚙️ Organização & Produtividade</span>
+              <h3>Rotina, projetos e próximos passos</h3>
+              <p>
+                Hoje busco equilibrar plantões, desenvolvimento pessoal e projetos que me permitam
+                <strong>diversificar a atuação</strong>, inclusive fora da medicina tradicional, sempre com
+                tecnologia como aliada.
+              </p>
+              <p>
+                Interesso-me por ferramentas que:
+              </p>
+              <ul class="mini-list">
+                <li>• Otimizem tarefas burocráticas e repetitivas.</li>
+                <li>• Estruturem melhor o fluxo de informação do plantão.</li>
+                <li>• Ajudem colegas e equipes a trabalharem de forma mais organizada.</li>
+              </ul>
+              <p style="margin-top: 0.5rem;">
+                Se você tem interesse em <strong>projetos em saúde + tecnologia</strong> ou vê espaço para
+                colaboração, será um prazer conversar.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATUAÇÃO -->
+      <section id="atuacao">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Como posso ajudar</div>
+            <h2 class="section-title">Áreas de atuação e interesses profissionais.</h2>
+            <p class="section-desc">
+              Atuação clínica direta em urgência e emergência, aliada a um olhar voltado para processos,
+              tecnologia e organização de rotina.
+            </p>
+          </div>
+
+          <div class="cards-grid">
+            <article class="service-card">
+              <h3 class="service-title">Clínica Médica em Urgência & Emergência</h3>
+              <div class="service-meta">Atendimento em pronto-atendimento e internação clínica.</div>
+              <ul class="service-list">
+                <li>
+                  <span class="bullet"></span>
+                  <span>Abordagem estruturada de pacientes clínicos agudos e crônicos agudizados.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Tomada de decisão baseada em evidência e contexto individual.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Comunicação clara com pacientes, familiares e equipes multiprofissionais.</span>
+                </li>
+              </ul>
+              <div class="service-note">
+                Foco em segurança, clareza de conduta e continuidade de cuidado entre setores.
+              </div>
+            </article>
+
+            <article class="service-card">
+              <h3 class="service-title">Organização de rotina & fluxos de trabalho</h3>
+              <div class="service-meta">Produtividade aplicada à rotina médica.</div>
+              <ul class="service-list">
+                <li>
+                  <span class="bullet"></span>
+                  <span>Interesse em sistemas que reduzam atrito na passagem de plantão.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Estruturação de checklists e templates para decisões repetitivas.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Visão prática sobre como organizar informação entre múltiplos plantões.</span>
+                </li>
+              </ul>
+              <div class="service-note">
+                Ideal para discutir melhorias internas de fluxo em serviços de urgência e clínica médica.
+              </div>
+            </article>
+
+            <article class="service-card">
+              <h3 class="service-title">Tecnologia & Inteligência Artificial na prática</h3>
+              <div class="service-meta">Saúde + tecnologia + organização.</div>
+              <ul class="service-list">
+                <li>
+                  <span class="bullet"></span>
+                  <span>Interesse em projetos que usem IA para apoiar decisões e reduzir tarefas manuais.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Exploração de ferramentas digitais para prontuários, anotações e checklists.</span>
+                </li>
+                <li>
+                  <span class="bullet"></span>
+                  <span>Colaboração em ideias de produtos digitais voltados para médicos e equipes.</span>
+                </li>
+              </ul>
+              <div class="service-note">
+                Aberto a parcerias em projetos de produto, pesquisa aplicada ou construção de ferramentas.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <section id="contato" class="contact">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">Contato</div>
+            <h2 class="section-title">Vamos conversar?</h2>
+            <p class="section-desc">
+              Use os canais abaixo para falar sobre oportunidades de trabalho, projetos em tecnologia,
+              colaboração em saúde digital ou temas relacionados à prática em urgência e emergência.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Informações de contato</h3>
+              <p>
+                Você pode adaptar os dados abaixo para o que fizer mais sentido: e-mail profissional, número
+                de WhatsApp, LinkedIn ou outro canal.
+              </p>
+
+              <ul class="contact-list">
+                <li>
+                  <div class="contact-label">E-mail</div>
+                  <div class="contact-value">
+                    <!-- Substitua pelo seu e-mail real -->
+                    <a href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-label">WhatsApp</div>
+                  <div class="contact-value">
+                    <!-- Substitua pelo seu número -->
+                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+                      +55 (00) 00000-0000
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-label">LinkedIn</div>
+                  <div class="contact-value">
+                    <!-- Substitua pela sua URL -->
+                    <a href="https://www.linkedin.com/in/seu-perfil" target="_blank" rel="noopener">
+                      linkedin.com/in/seu-perfil
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="contact-label">Base de atuação</div>
+                  <div class="contact-value">Belo Horizonte – MG · Brasil</div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <form class="contact-form" onsubmit="event.preventDefault(); alert('Aqui você pode integrar com um serviço de envio de e-mail ou backend próprio.');">
+                <div class="field">
+                  <label for="nome">Nome</label>
+                  <input id="nome" name="nome" type="text" placeholder="Seu nome" />
+                </div>
+                <div class="field">
+                  <label for="email">E-mail</label>
+                  <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" />
+                </div>
+                <div class="field">
+                  <label for="assunto">Assunto</label>
+                  <input id="assunto" name="assunto" type="text" placeholder="Motivo do contato" />
+                </div>
+                <div class="field">
+                  <label for="mensagem">Mensagem</label>
+                  <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..."></textarea>
+                </div>
+
+                <p class="form-note">
+                  Este formulário é apenas ilustrativo. Para uso real, conecte a um serviço de e-mail ou backend.
+                </p>
+
+                <button type="submit" class="btn-primary">
+                  Enviar mensagem <span>✉️</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> · Dr. João — Clínica Médica & Tecnologia.</div>
+        <div class="footer-links">
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#atuacao">Atuação</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Ano automático no rodapé
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Menu mobile
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Fecha o menu ao clicar em um link (mobile)
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  </script>
+</body>
+</html>
